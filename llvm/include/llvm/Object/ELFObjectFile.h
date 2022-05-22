@@ -1198,6 +1198,8 @@ StringRef ELFObjectFile<ELFT>::getFileFormatName() const {
       return "elf32-littleriscv";
     case ELF::EM_CSKY:
       return "elf32-csky";
+    case ELF::EM_SETHISA:
+      return "ELF32-sethisa";
     case ELF::EM_SPARC:
     case ELF::EM_SPARC32PLUS:
       return "elf32-sparc";
@@ -1289,7 +1291,8 @@ template <class ELFT> Triple::ArchType ELFObjectFile<ELFT>::getArch() const {
     }
   case ELF::EM_S390:
     return Triple::systemz;
-
+  case ELF::EM_SETHISA:
+    return Triple::sethisa;
   case ELF::EM_SPARC:
   case ELF::EM_SPARC32PLUS:
     return IsLittleEndian ? Triple::sparcel : Triple::sparc;

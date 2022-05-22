@@ -122,6 +122,13 @@ StringRef llvm::object::getELFRelocationTypeName(uint32_t Machine,
       break;
     }
     break;
+  case ELF::EM_CPU0:
+    switch (Type) {
+#include "llvm/Support/ELFRelocs/SethISA.def"
+    default:
+      break;
+    }
+    break;
   case ELF::EM_SPARC:
   case ELF::EM_SPARC32PLUS:
   case ELF::EM_SPARCV9:
