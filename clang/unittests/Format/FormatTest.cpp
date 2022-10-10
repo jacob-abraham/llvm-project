@@ -2983,11 +2983,6 @@ TEST_F(FormatTest, ShortCaseLabels) {
                "#endif\n"
                "}",
                Style);
-  verifyFormat("#define X                                                      "
-               "                \\\n"
-               "  case 0: break;\n"
-               "#include \"f\"\n",
-               Style);
   verifyFormat("switch (a) {\n"
                "case 1: {\n"
                "}\n"
@@ -3004,6 +2999,10 @@ TEST_F(FormatTest, ShortCaseLabels) {
                "}",
                Style);
   Style.ColumnLimit = 21;
+  verifyFormat("#define X           \\\n"
+               "  case 0: break;\n"
+               "#include \"f\"",
+               Style);
   verifyFormat("switch (a) {\n"
                "case 1: x = 1; break;\n"
                "case 2: return;\n"
